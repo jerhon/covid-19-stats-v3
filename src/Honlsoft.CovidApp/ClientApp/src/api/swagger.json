@@ -1,0 +1,375 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Honlsoft Covid Tracking API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/states/{stateAbbreviation}": {
+      "get": {
+        "tags": [
+          "State"
+        ],
+        "parameters": [
+          {
+            "name": "stateAbbreviation",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStateDataDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStateDataDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStateDataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/states/{stateAbbreviation}/aggregate": {
+      "get": {
+        "tags": [
+          "State"
+        ],
+        "parameters": [
+          {
+            "name": "stateAbbreviation",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AggregateDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AggregateDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AggregateDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CovidStateDailyRecord": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataQualityGrade": {
+            "type": "string",
+            "nullable": true
+          },
+          "death": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "deathConfirmed": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "deathIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "deathProbable": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "hospitalized": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "hospitalizedCumulative": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "hospitalizedCurrently": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "hospitalizedIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "inIcuCumulative": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "inIcuCurrently": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "negative": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "negativeIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "negativeTestsAntibody": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "negativeTestsPeopleAntibody": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "negativeTestsViral": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "onVentilatorCumulative": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "onVentilatorCurrently": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positive": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveCasesViral": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveScore": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveTestsAntibody": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveTestsAntigen": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveTestsPeopleAntibody": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveTestsPeopleAntigen": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "positiveTestsViral": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "recovered": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestEncountersViral": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestEncountersViralIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestResults": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestResultsIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsAntibody": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsAntigen": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsPeopleAntibody": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsPeopleAntigen": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsPeopleViral": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsPeopleViralIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsViral": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalTestsViralIncrease": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sourceHash": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetStateDataDto": {
+        "type": "object",
+        "properties": {
+          "abbreviation": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CovidStateDailyRecord"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AggregateDataPointsDto": {
+        "type": "object",
+        "properties": {
+          "positive": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "death": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AggregateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "$ref": "#/components/schemas/AggregateDataPointsDto"
+          },
+          "total": {
+            "$ref": "#/components/schemas/AggregateDataPointsDto"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

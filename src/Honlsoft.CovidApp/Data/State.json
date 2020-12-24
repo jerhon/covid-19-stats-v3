@@ -1,0 +1,356 @@
+﻿[
+  {
+    "Id": 59,
+    "Abbreviation": "AL",
+    "Name": "Alabama",
+    "Population": 4908620
+  },
+  {
+    "Id": 1,
+    "Abbreviation": "AK",
+    "Name": "Alaska",
+    "Population": 734002
+  },
+  {
+    "Id": 2,
+    "Abbreviation": "AS",
+    "Name": "American Samoa",
+    "Population": 55191
+  },
+  {
+    "Id": 3,
+    "Abbreviation": "AZ",
+    "Name": "Arizona",
+    "Population": 7378490
+  },
+  {
+    "Id": 4,
+    "Abbreviation": "AR",
+    "Name": "Arkansas",
+    "Population": 3039000
+  },
+  {
+    "Id": 5,
+    "Abbreviation": "CA",
+    "Name": "California",
+    "Population": 39937500
+  },
+  {
+    "Id": 6,
+    "Abbreviation": "CO",
+    "Name": "Colorado",
+    "Population": 5845530
+  },
+  {
+    "Id": 7,
+    "Abbreviation": "CT",
+    "Name": "Connecticut",
+    "Population": 3563080
+  },
+  {
+    "Id": 8,
+    "Abbreviation": "DE",
+    "Name": "Delaware",
+    "Population": 982895
+  },
+  {
+    "Id": 9,
+    "Abbreviation": "DC",
+    "Name": "District Of Columbia",
+    "Population": 720687
+  },
+  {
+    "Id": 10,
+    "Abbreviation": "FM",
+    "Name": "Federated States Of Micronesia",
+    "Population": 115473
+  },
+  {
+    "Id": 11,
+    "Abbreviation": "FL",
+    "Name": "Florida",
+    "Population": 21993000
+  },
+  {
+    "Id": 12,
+    "Abbreviation": "GA",
+    "Name": "Georgia",
+    "Population": 10736100
+  },
+  {
+    "Id": 13,
+    "Abbreviation": "GU",
+    "Name": "Guam",
+    "Population": 169525
+  },
+  {
+    "Id": 14,
+    "Abbreviation": "HI",
+    "Name": "Hawaii",
+    "Population": 1412690
+  },
+  {
+    "Id": 15,
+    "Abbreviation": "ID",
+    "Name": "Idaho",
+    "Population": 1826160
+  },
+  {
+    "Id": 16,
+    "Abbreviation": "IL",
+    "Name": "Illinois",
+    "Population": 12659700
+  },
+  {
+    "Id": 17,
+    "Abbreviation": "IN",
+    "Name": "Indiana",
+    "Population": 6745350
+  },
+  {
+    "Id": 18,
+    "Abbreviation": "IA",
+    "Name": "Iowa",
+    "Population": 3179850
+  },
+  {
+    "Id": 19,
+    "Abbreviation": "KS",
+    "Name": "Kansas",
+    "Population": 2910360
+  },
+  {
+    "Id": 20,
+    "Abbreviation": "KY",
+    "Name": "Kentucky",
+    "Population": 4499690
+  },
+  {
+    "Id": 21,
+    "Abbreviation": "LA",
+    "Name": "Louisiana",
+    "Population": 4645180
+  },
+  {
+    "Id": 22,
+    "Abbreviation": "ME",
+    "Name": "Maine",
+    "Population": 1345790
+  },
+  {
+    "Id": 23,
+    "Abbreviation": "MH",
+    "Name": "Marshall Islands",
+    "Population": 59190
+  },
+  {
+    "Id": 24,
+    "Abbreviation": "MD",
+    "Name": "Maryland",
+    "Population": 6083120
+  },
+  {
+    "Id": 25,
+    "Abbreviation": "MA",
+    "Name": "Massachusetts",
+    "Population": 6976600
+  },
+  {
+    "Id": 26,
+    "Abbreviation": "MI",
+    "Name": "Michigan",
+    "Population": 10045000
+  },
+  {
+    "Id": 27,
+    "Abbreviation": "MN",
+    "Name": "Minnesota",
+    "Population": 5700670
+  },
+  {
+    "Id": 28,
+    "Abbreviation": "MS",
+    "Name": "Mississippi",
+    "Population": 2989260
+  },
+  {
+    "Id": 29,
+    "Abbreviation": "MO",
+    "Name": "Missouri",
+    "Population": 6169270
+  },
+  {
+    "Id": 30,
+    "Abbreviation": "MT",
+    "Name": "Montana",
+    "Population": 1086760
+  },
+  {
+    "Id": 31,
+    "Abbreviation": "NE",
+    "Name": "Nebraska",
+    "Population": 1952570
+  },
+  {
+    "Id": 32,
+    "Abbreviation": "NV",
+    "Name": "Nevada",
+    "Population": 3139660
+  },
+  {
+    "Id": 33,
+    "Abbreviation": "NH",
+    "Name": "New Hampshire",
+    "Population": 1371250
+  },
+  {
+    "Id": 34,
+    "Abbreviation": "NJ",
+    "Name": "New Jersey",
+    "Population": 8936570
+  },
+  {
+    "Id": 35,
+    "Abbreviation": "NM",
+    "Name": "New Mexico",
+    "Population": 2096640
+  },
+  {
+    "Id": 36,
+    "Abbreviation": "NY",
+    "Name": "New York",
+    "Population": 19440500
+  },
+  {
+    "Id": 37,
+    "Abbreviation": "NC",
+    "Name": "North Carolina",
+    "Population": 10611900
+  },
+  {
+    "Id": 38,
+    "Abbreviation": "ND",
+    "Name": "North Dakota",
+    "Population": 761723
+  },
+  {
+    "Id": 39,
+    "Abbreviation": "MP",
+    "Name": "Northern Mariana Islands",
+    "Population": 57559
+  },
+  {
+    "Id": 40,
+    "Abbreviation": "OH",
+    "Name": "Ohio",
+    "Population": 11747700
+  },
+  {
+    "Id": 41,
+    "Abbreviation": "OK",
+    "Name": "Oklahoma",
+    "Population": 3954820
+  },
+  {
+    "Id": 42,
+    "Abbreviation": "OR",
+    "Name": "Oregon",
+    "Population": 4301090
+  },
+  {
+    "Id": 43,
+    "Abbreviation": "PW",
+    "Name": "Palau",
+    "Population": 17907
+  },
+  {
+    "Id": 44,
+    "Abbreviation": "PA",
+    "Name": "Pennsylvania",
+    "Population": 12820900
+  },
+  {
+    "Id": 45,
+    "Abbreviation": "PR",
+    "Name": "Puerto Rico",
+    "Population": 3032160
+  },
+  {
+    "Id": 46,
+    "Abbreviation": "RI",
+    "Name": "Rhode Island",
+    "Population": 1056160
+  },
+  {
+    "Id": 47,
+    "Abbreviation": "SC",
+    "Name": "South Carolina",
+    "Population": 5210100
+  },
+  {
+    "Id": 48,
+    "Abbreviation": "SD",
+    "Name": "South Dakota",
+    "Population": 903027
+  },
+  {
+    "Id": 49,
+    "Abbreviation": "TN",
+    "Name": "Tennessee",
+    "Population": 6897580
+  },
+  {
+    "Id": 50,
+    "Abbreviation": "TX",
+    "Name": "Texas",
+    "Population": 29472300
+  },
+  {
+    "Id": 51,
+    "Abbreviation": "UT",
+    "Name": "Utah",
+    "Population": 3282120
+  },
+  {
+    "Id": 52,
+    "Abbreviation": "VT",
+    "Name": "Vermont",
+    "Population": 628061
+  },
+  {
+    "Id": 53,
+    "Abbreviation": "VI",
+    "Name": "Virgin Islands",
+    "Population": 104425
+  },
+  {
+    "Id": 54,
+    "Abbreviation": "VA",
+    "Name": "Virginia",
+    "Population": 8626210
+  },
+  {
+    "Id": 55,
+    "Abbreviation": "WA",
+    "Name": "Washington",
+    "Population": 7797100
+  },
+  {
+    "Id": 56,
+    "Abbreviation": "WV",
+    "Name": "West Virginia",
+    "Population": 1778070
+  },
+  {
+    "Id": 57,
+    "Abbreviation": "WI",
+    "Name": "Wisconsin",
+    "Population": 5851750
+  },
+  {
+    "Id": 58,
+    "Abbreviation": "WY",
+    "Name": "Wyoming",
+    "Population": 567025
+  }
+]
