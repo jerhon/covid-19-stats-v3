@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
+using NSwag;
 
 namespace Honlsoft.CovidApp
 {
@@ -33,9 +33,12 @@ namespace Honlsoft.CovidApp
             services.AddHostedService<CovidTrackingProjectImportService>();
             services.AddSingleton<ICovidTrackingDataService, CovidTrackingDataService>();
 
-            services.AddSwaggerGen(c =>
+            services.AddOpenApiDocument(d =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Honlsoft Covid Tracking API", Version = "v1"});
+                d.DocumentName = "hs-covid-19-v1";
+                d.Title = "Honlsoft COVID-19 API";
+                d.Description = "Data from the COVID-19 Tracking Project aggregated in different ways to support API access.";
+                d.Version = "v1";
             });
 
             Action<DbContextOptionsBuilder> dbContextOptsBuilder = (opts) =>
@@ -72,7 +75,7 @@ namespace Honlsoft.CovidApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            app.UseSwagger();
+            app.UseOpenApi();
             
             app.UseRouting();
 
