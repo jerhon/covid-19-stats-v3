@@ -1,6 +1,7 @@
 ﻿import React, { useCallback, useState } from "react"
 import { debounce } from "lodash"
-import {makeStyles} from "@material-ui/core/styles";
+import {createStyles, makeStyles} from "@material-ui/core/styles";
+import {useTheme} from "@material-ui/core";
 
 
 export interface StateEvent {
@@ -15,23 +16,23 @@ export interface NationMapProperties {
     //renderPopup: (() => JSX.Element | JSX.Element[]) | null;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => createStyles({
     map: {
-        fill: '#61dafb',
-        stroke: 'white',
-        strokeWidth: 0.25,
+        fill: theme.palette.primary.main,
+        stroke: theme.palette.primary.contrastText,
+        strokeWidth: 0.125,
         height: '100%',
         cursor: 'pointer',
         
         '& path:hover': {
-            fill: 'blue !important'
+            fill: theme.palette.secondary.main + ' !important'
         }
     },
     active: {
-        fill: 'blue !important'    
+        fill: theme.palette.secondary.dark + ' !important'    
     }
 
-})
+}));
 
 export interface StateOptions {
     color: string;
@@ -47,6 +48,7 @@ export function UsMap({ onStateClicked, stateOptions, selected, onStateHover /*,
     const [pos, setPos] = useState<Position>({ x: 0, y: 0 })
     const [vis, setVis] = useState(true)
     const handlePopupMove = useCallback(debounce(setPos, 50, { leading: true }), [])
+    const theme = useTheme();
     const styles = useStyles();
     
     const shared = (state: string) => ({
@@ -64,7 +66,7 @@ export function UsMap({ onStateClicked, stateOptions, selected, onStateHover /*,
         /* onMouseMove: ( event: React.MouseEvent<SVGPathElement, MouseEvent> ) => {
             setPos({x: event.pageX, y: event.pageY})
         }, */
-        style: { fill: stateOptions[state]?.color ?? '#61dafb' },
+        style: { fill: stateOptions[state]?.color ?? theme.palette.primary.main },
         className: state === selected ? styles.active : ""
     })
 
