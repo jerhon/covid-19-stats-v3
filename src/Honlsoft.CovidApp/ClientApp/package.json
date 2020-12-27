@@ -32,8 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "get:swagger": "",
-    "generate:api-specs": "openapi-generator-cli generate -g typescript-axios -i src/api/swagger.json -o src/api/"
+    "generate:api-client": "pwsh -f ./GenerateSwagger.ps1"
   },
   "eslintConfig": {
     "extends": [

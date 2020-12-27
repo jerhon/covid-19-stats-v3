@@ -1,6 +1,7 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {StateApi, GetStateDataDto, AggregateDto} from "../api";
-import {createAsyncSlice} from "../AsyncSlice";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { GetStateDataDto, AggregateDto} from "../api/hs-covid-19-v1";
+import { createAsyncSlice } from "../AsyncSlice";
+import { getStateClient } from "../api/HsCovidApi";
 
 export interface StateSliceState {
     notRequested: boolean;
@@ -11,10 +12,10 @@ export interface StateSliceState {
 }
 
 export const requestStateInfo = createAsyncThunk('state/request', async (state: string) => {
-    const api = new StateApi(undefined, '');
+    const api = getStateClient();
     
-    const aggregate = (await api.apiV1StatesStateAbbreviationAggregateGet(state)).data;
-    const stateInfo = (await api.apiV1StatesStateAbbreviationGet(state)).data;
+    const aggregate = await api.getAggregate(state, undefined);
+    const stateInfo = await api.getStateData(state);
     
     return { aggregate, stateInfo }
 });
