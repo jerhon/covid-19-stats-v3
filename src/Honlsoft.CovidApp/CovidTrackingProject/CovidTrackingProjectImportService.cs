@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Timer = System.Timers.Timer;
 
-namespace Honlsoft.CovidApp.Services
+namespace Honlsoft.CovidApp.CovidTrackingProject
 {
     public class CovidTrackingProjectImportService : IHostedService
     {

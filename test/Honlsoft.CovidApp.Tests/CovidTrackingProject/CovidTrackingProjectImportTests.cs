@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Honlsoft.CovidApp.CovidTrackingProject;
 using Honlsoft.CovidApp.Data;
 using Moq;
@@ -11,7 +12,7 @@ namespace Honlsoft.CovidApp.Tests.CovidTrackingProject
     public class CovidTrackingProjectImportTests
     {
         [Test]
-        public void TestImportCovidData()
+        public async Task TestImportCovidData()
         {
             CovidStateDailyRecord[] records =
             {
@@ -28,18 +29,19 @@ namespace Honlsoft.CovidApp.Tests.CovidTrackingProject
                     SourceHash = new byte[] {5, 6, 7, 8}
                 }
             };
+            var dbHarness = new DatabaseHarness();
             
             var dataServiceMock = new Mock<ICovidTrackingDataService>();
             dataServiceMock.Setup((m) => m.GetDailyStateRecordsAsync()).ReturnsAsync(records.ToAsyncEnumerable());
 
-            var dbContext = DbUtils.GetCovidDataSource();
-            var import = new CovidTrackingProjectImport(dataServiceMock.Object, DbUtils.GetFactory());
-            import.ImportAsync();
+            var dbContext = dbHarness.GetCovidDataSource();
+            var import = new CovidTrackingProjectImport(dataServiceMock.Object, dbHarness.GetFactory());
+            await import.ImportStatesAsync();
 
             Assert.AreEqual(2, dbContext.StatesDailyStatistics.Count());
 
             // re-importing the same data should keep # of records the same
-            import.ImportAsync();
+            await import.ImportStatesAsync();
             
             Assert.AreEqual(2, dbContext.StatesDailyStatistics.Count());
         }

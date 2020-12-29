@@ -9,8 +9,7 @@ namespace Honlsoft.CovidApp.CovidTrackingProject
     {
         private readonly ICovidTrackingDataService _dataService;
         private readonly IDbContextFactory<CovidDataContext> _dataContextFactory;
-        
-        
+
         public CovidTrackingProjectImport(ICovidTrackingDataService dataService, IDbContextFactory<CovidDataContext> dataContextFactory)
         {
             _dataService = dataService;

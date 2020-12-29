@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Honlsoft.CovidApp.CovidTrackingProject;
 using Honlsoft.CovidApp.Data;
-using Honlsoft.CovidApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -10,8 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NSwag;
 
 namespace Honlsoft.CovidApp
 {
@@ -24,15 +21,19 @@ namespace Honlsoft.CovidApp
 
         public IConfiguration Configuration { get; }
 
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             services.AddHttpClient();
             services.AddTransient<CovidTrackingProjectImport>();
-            services.AddHostedService<CovidTrackingProjectImportService>();
             services.AddSingleton<ICovidTrackingDataService, CovidTrackingDataService>();
-
+            
+            // Services for initialization
+            services.AddHostedService<CovidDataContextInitializationService>();
+            services.AddHostedService<CovidTrackingProjectImportService>();
+            
             services.AddOpenApiDocument(d =>
             {
                 d.DocumentName = "hs-covid-19-v1";
@@ -41,13 +42,18 @@ namespace Honlsoft.CovidApp
                 d.Version = "v1";
             });
 
-            Action<DbContextOptionsBuilder> dbContextOptsBuilder = (opts) =>
+            // We'll create a single database connect, that will be used while the application is running.
+            // it will be maintained in memory.  Will have to watch memory usage to see how it handles it.
+            var database = SqlLiteUtils.CreateInMemoryDatabase();
+
+            Action<DbContextOptionsBuilder> dbOptions = (opts) =>
             {
-                opts.UseInMemoryDatabase("CovidDataContext");
+                opts.UseSqlite(database);
             };
             
-            services.AddDbContext<CovidDataContext>((opts) => opts.UseInMemoryDatabase("CovidDataContext"), optionsLifetime: ServiceLifetime.Singleton);
-            services.AddDbContextFactory<CovidDataContext>((opts) => opts.UseInMemoryDatabase("CovidDataContext"));
+            // The DB context needs to be set as a singleton, otherwise EF core get's confused between the two following calls.
+            services.AddDbContext<CovidDataContext>(dbOptions, optionsLifetime: ServiceLifetime.Singleton);
+            services.AddDbContextFactory<CovidDataContext>(dbOptions);
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -69,8 +75,6 @@ namespace Honlsoft.CovidApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
-            SetupDatabase(app);
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -99,16 +103,6 @@ namespace Honlsoft.CovidApp
                     }
                 });
             });
-        }
-
-        public static void SetupDatabase(IApplicationBuilder builder)
-        {
-            var fact = builder.ApplicationServices.GetService<IDbContextFactory<CovidDataContext>>();
-            using var context = fact.CreateDbContext();
-
-            // Any starting data should be imported here.
-            context.States.ImportData("State.json");
-            context.SaveChanges();
         }
     }
 }
