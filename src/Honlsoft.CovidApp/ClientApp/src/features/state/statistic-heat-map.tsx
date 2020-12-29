@@ -4,14 +4,20 @@ import {Skeleton} from "@material-ui/lab";
 import {ResponsiveCalendar} from "@nivo/calendar";
 import {RedColorScale} from "../../utils/colorScales";
 import React from "react";
-import {CovidStateDailyRecord} from "../../api";
+import {CovidStateDailyRecord} from "../../api/hs-covid-19-v1";
 
 
 
-function formatDate(date: string) {
-    let t = date.indexOf('T');
-    if (t > 0) {
-        return date.substring(0, t);
+function formatDate(date: string | Date | undefined) {
+    if (date === undefined || date === null) {
+        return '';
+    } else if (date instanceof Date) {
+        return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate() 
+    } else {
+        let t = date.toString().indexOf('T');
+        if (t > 0) {
+            return date.substring(0, t);
+        }
     }
     return date;
 }
@@ -29,7 +35,7 @@ export function StatisticHeatMap({ statistic } : StatisticHeatMapProps) {
     }
 
     let data =  state.data.stateInfo.dataPoints?.map((dp) => ({
-        day: formatDate(dp.date ?? ''),
+        day: formatDate(dp.date),
         value: +(dp[statistic] ?? 0)
     })).filter((dp) => !!dp.day && !!dp.value)
     
@@ -38,5 +44,4 @@ export function StatisticHeatMap({ statistic } : StatisticHeatMapProps) {
         to={data[0].day}
         colors={RedColorScale}
         margin={{left: 24, top: 24, right: 24, bottom: 24}} />)
-
 }

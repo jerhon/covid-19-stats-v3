@@ -1,9 +1,9 @@
-﻿import {useSelector} from "react-redux";
+﻿import { useSelector } from "react-redux";
 import * as statementSlice from "../state.slice";
 import React from "react";
-import {AggregateDataPointsDto} from "../../api";
-import {CircularProgress} from "@material-ui/core";
-import {Pie, ResponsivePie} from "@nivo/pie";
+import { AggregateDataPointsDto } from "../../api/hs-covid-19-v1";
+import { CircularProgress } from "@material-ui/core";
+import { ResponsivePie } from "@nivo/pie";
 
 
 interface MyPieProperties
@@ -69,9 +69,16 @@ export function StatisticPieWidget({ statistic }: StatisticPieWidgetProps) {
     } else {
         const total = state.data.aggregate.total;
         const current = state.data.aggregate.state;
+        const countryValue = +(total[statistic] ?? 0) - +(current[statistic] ?? 0);
         const data = [
-            { id: 'Country', value: (total[statistic] ?? 0) - (current[statistic] ?? 0) },
-            { id: state.data.aggregate.name ?? 'Unknown', value: current[statistic] ?? 0 }
+            { 
+                id: 'Country',
+                value: countryValue
+            },
+            { 
+                id: state.data.aggregate.name ?? 'Unknown', 
+                value: +(current[statistic] ?? 0) 
+            }
         ]
 
         return (<MyPie data={data} />);
