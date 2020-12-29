@@ -1,4 +1,4 @@
-﻿import {AsyncThunk, AsyncThunkPayloadCreator, createSlice} from "@reduxjs/toolkit";
+import {AsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 /** Represents the asunc state of the async thunk. */
 export interface AsyncSliceState<DataType> {

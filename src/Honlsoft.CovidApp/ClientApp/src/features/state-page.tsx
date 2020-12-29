@@ -44,7 +44,7 @@ export function StatePage() {
         if (state.notRequested) {
             dispatch(statementSlice.actions.requestStateInfo(id.toUpperCase()));
         }
-    }, [state.notRequested, dispatch, statementSlice.actions.requestStateInfo, id])
+    }, [state.notRequested, dispatch, id])
 
     if ( !state.data || !state.data.stateInfo || !state.data.aggregate || !state.data.stateInfo.dataPoints ) {
         return (<div>Loading</div>)

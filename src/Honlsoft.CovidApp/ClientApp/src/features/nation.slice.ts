@@ -1,5 +1,4 @@
-﻿import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createAsyncSlice} from "../AsyncSlice";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export interface NationState {
     selected?: string;
@@ -20,6 +19,8 @@ export const getLatestNationStats = createAsyncThunk('nation/latest', () => {
        
 })
 
+const selector = (state: any) => state.nation as NationState;
+
 export const actions = nationSlice.actions;
 export const reducer = { nation: nationSlice.reducer }
-export default (state: any) => state.nation as NationState;
+export default selector;

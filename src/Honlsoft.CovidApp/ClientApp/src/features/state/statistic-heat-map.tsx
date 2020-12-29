@@ -1,4 +1,4 @@
-﻿import {shallowEqual, useSelector} from "react-redux";
+import {shallowEqual, useSelector} from "react-redux";
 import * as statementSlice from "../state.slice";
 import {Skeleton} from "@material-ui/lab";
 import {ResponsiveCalendar} from "@nivo/calendar";

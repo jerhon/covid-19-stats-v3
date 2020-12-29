@@ -1,4 +1,4 @@
-﻿import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import * as statementSlice from "../state.slice";
 import React from "react";
 import { AggregateDataPointsDto } from "../../api/hs-covid-19-v1";

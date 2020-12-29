@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import {UsMap} from "./us-map/us-map";
 import selector, { actions } from "./nation.slice"
 import {useDispatch, useSelector} from "react-redux";

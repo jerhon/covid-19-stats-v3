@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
 import { debounce } from "lodash"
 import {createStyles, makeStyles} from "@material-ui/core/styles";
 import {useTheme} from "@material-ui/core";
@@ -45,9 +45,10 @@ export interface Position {
 
 export function UsMap({ onStateClicked, stateOptions, selected, onStateHover /*, renderPopup*/ }: NationMapProperties) {
 
-    const [pos, setPos] = useState<Position>({ x: 0, y: 0 })
-    const [vis, setVis] = useState(true)
-    const handlePopupMove = useCallback(debounce(setPos, 50, { leading: true }), [])
+    const [, setPos] = useState<Position>({ x: 0, y: 0 })
+    const [, setVis] = useState(true)
+    
+    const handlePopupMove = useCallback(debounce(setPos, 50, { leading: true }), []) // eslint-disable-line react-hooks/exhaustive-deps
     const theme = useTheme();
     const styles = useStyles();
     
