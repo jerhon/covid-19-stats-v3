@@ -1,0 +1,1 @@
+docker build -t hs-covid-19-v1 .

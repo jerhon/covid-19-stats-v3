@@ -1,0 +1,1 @@
+docker run --rm -it -p 5000:80 --name covid_19_container hs-covid-19-v1

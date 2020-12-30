@@ -1,0 +1,6 @@
+﻿**/bin
+**/obj
+**/node_modules
+
+# Don't include the docker file, that way if it changes we can reuse the cache on the COPY . step
+Dockerfile
