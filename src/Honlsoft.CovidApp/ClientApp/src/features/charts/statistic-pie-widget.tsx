@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
 import * as statementSlice from "../state.slice";
 import React from "react";
-import { AggregateDataPointsDto } from "../../api/hs-covid-19-v1";
+import { AggregateDataPointsDto } from "../../api/hs-covid-19/api";
 import { CircularProgress } from "@material-ui/core";
 import { ResponsivePie } from "@nivo/pie";
-
 
 interface MyPieProperties
 {
@@ -39,21 +38,20 @@ function MyPie({ data }: MyPieProperties) {
     }
 
     return (<ResponsivePie 
-             data={data}
-             margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-             innerRadius={0.25}
-             padAngle={0.7}
-             cornerRadius={0}
-             colors={{ scheme: 'nivo' }}
-             borderWidth={1}
-             borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
-             radialLabelsSkipAngle={0}
-             radialLabelsTextColor="#333333"
-             radialLabelsLinkColor={{ from: 'color' }}
-             sliceLabelsSkipAngle={0}
-             sliceLabelsTextColor="#333333"
-             legends={legends} />
-    )
+        data={data}
+        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+        innerRadius={0.25}
+        padAngle={0.7}
+        cornerRadius={0}
+        colors={{ scheme: 'nivo' }}
+        borderWidth={1}
+        borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
+        radialLabelsSkipAngle={0}
+        radialLabelsTextColor="#333333"
+        radialLabelsLinkColor={{ from: 'color' }}
+        sliceLabelsSkipAngle={0}
+        sliceLabelsTextColor="#333333"
+        legends={legends} />)
 }
 
 export interface StatisticPieWidgetProps {

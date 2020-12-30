@@ -1,16 +1,27 @@
 import React from "react";
 import {UsMap} from "./us-map/us-map";
-import selector, { actions } from "./nation.slice"
 import {useDispatch, useSelector} from "react-redux";
+import {Card, CardContent, CardHeader, Divider, Grid, Typography} from "@material-ui/core";
+import * as statementSlice from "./state.slice";
 
 export function NationPage() {
-    
     const dispatch = useDispatch();
-    const selectedState = useSelector(selector);
+    const stateName = useSelector(statementSlice.selectStateName);
     
-    return (<div>
-        <UsMap stateOptions={{}}
-               onStateClicked={(e) => dispatch(actions.setSelected({ selected: e.state }))}
-               selected={selectedState?.selected} />
-    </div>)
+    return (<Grid container>
+        <Grid item xs={12} md={9}>
+            <UsMap stateOptions={{}}
+                   onStateClicked={(e) => dispatch(statementSlice.requestStateInfo(e.state))}
+                   selected={stateName} />
+        </Grid>
+        <Grid item xs={12} md={3}>
+            <Card variant="elevation" elevation={1}>
+                <CardHeader title={stateName} />
+                <Divider />
+                <CardContent>
+                    Here's the data!
+                </CardContent>
+            </Card>
+        </Grid>
+    </Grid>)
 }

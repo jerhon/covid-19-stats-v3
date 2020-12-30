@@ -4,7 +4,7 @@ import {Skeleton} from "@material-ui/lab";
 import {ResponsiveCalendar} from "@nivo/calendar";
 import {RedColorScale} from "../../utils/colorScales";
 import React from "react";
-import {CovidStateDailyRecord} from "../../api/hs-covid-19-v1";
+import {CovidStateDailyRecord} from "../../api/hs-covid-19/api";
 
 
 

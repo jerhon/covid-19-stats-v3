@@ -31,8 +31,8 @@ namespace Honlsoft.CovidApp.Controllers
         [HttpGet("{stateAbbreviation}")]
         public async Task<GetStateDataDto> GetStateData(string stateAbbreviation)
         {
-            var state = await _dataContext.States.AsQueryable().FirstOrDefaultAsync((s) => s.Abbreviation.Equals(stateAbbreviation, StringComparison.CurrentCultureIgnoreCase));
-            var dataPoints = await _dataContext.StatesDailyStatistics.AsQueryable().Where((s) => s.State.Equals(stateAbbreviation, StringComparison.CurrentCultureIgnoreCase)).ToArrayAsync();
+            var state = await _dataContext.States.AsQueryable().FirstOrDefaultAsync((s) => s.Abbreviation == stateAbbreviation);
+            var dataPoints = await _dataContext.StatesDailyStatistics.AsQueryable().Where((s) => s.State == stateAbbreviation).ToArrayAsync();
             var dto = new GetStateDataDto(state?.Abbreviation, state?.Name, dataPoints);
             return dto;
         }
@@ -43,7 +43,7 @@ namespace Honlsoft.CovidApp.Controllers
             since ??= DateTime.Now.AddDays(-7);
             
             var state = await _dataContext.States.AsQueryable().FirstOrDefaultAsync((s) =>
-                s.Abbreviation.Equals(stateAbbreviation, StringComparison.CurrentCultureIgnoreCase));
+                s.Abbreviation == stateAbbreviation);
 
             var last7Days = _dataContext.StatesDailyStatistics.AsQueryable()
                 .Where((s) => s.Date >= since)
@@ -54,7 +54,7 @@ namespace Honlsoft.CovidApp.Controllers
             var total = new AggregateDataPointsDto(totalPositive, totalDeaths);
 
             var aggregate = await _dataContext.StatesDailyStatistics.AsQueryable()
-                .Where((s) => s.Date >= since && s.State.Equals(stateAbbreviation, StringComparison.CurrentCultureIgnoreCase))
+                .Where((s) => s.Date >= since && s.State == stateAbbreviation)
                 .Select((dp) => new { State = dp.State, Death = dp.Death ?? 0, Positive = dp.Positive ?? 0 })
                 .GroupBy((dp) => dp.State)
                 .Select((dp) => new AggregateDataPointsDto(

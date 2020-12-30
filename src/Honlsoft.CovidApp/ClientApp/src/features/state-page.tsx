@@ -6,8 +6,8 @@ import clsx from "clsx";
 import {useParams} from "react-router-dom"
 import { Paper, Table, TableCell, TableContainer, TableRow} from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
-import {StatisticPieWidget} from "./state/statistic-pie-widget";
-import {StatisticHeatMap} from "./state/statistic-heat-map";
+import {StatisticPieWidget} from "./charts/statistic-pie-widget";
+import {StatisticHeatMap} from "./charts/statistic-heat-map";
 
 const useStyles = makeStyles({
         calendar: {
@@ -42,7 +42,7 @@ export function StatePage() {
     const classes = useStyles();
     useEffect(() => {
         if (state.notRequested) {
-            dispatch(statementSlice.actions.requestStateInfo(id.toUpperCase()));
+            dispatch(statementSlice.requestStateInfo(id.toUpperCase()));
         }
     }, [state.notRequested, dispatch, id])
 

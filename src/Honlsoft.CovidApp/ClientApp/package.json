@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate:api-client": "pwsh -f ./GenerateSwagger.ps1"
+    "generate:api-client": "pwsh -f ./generate-api-client.ps1"
   },
   "eslintConfig": {
     "extends": [
