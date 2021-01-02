@@ -18,8 +18,8 @@ namespace Honlsoft.CovidApp.Tests.CovidTrackingProject
         [Test]
         public async Task ParseCovidData()
         {
-            var text = await File.ReadAllTextAsync(TestContext.CurrentContext.TestDirectory +
-                                                   "\\CovidTrackingProject\\all-states-history.csv");
+            var text = await File.ReadAllTextAsync(Path.Join(TestContext.CurrentContext.TestDirectory,
+                "CovidTrackingProject", "all-states-history.csv"));
             var records = await CovidTrackingDataService.ParseCsvRecords<CovidStateDailyRecord>(new StringReader(text))
                 .ToArrayAsync();
             Assert.AreEqual(14279, records.Length);
