@@ -1,0 +1,22 @@
+﻿name: Build Docker Image
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Docker
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
+          registry: ghcr.io/jerhon/covid-19-stats-v3
+          repository: jerhon/covid-19-stats-v3/hs-covid-19-stats
+          tag_with_ref: true
