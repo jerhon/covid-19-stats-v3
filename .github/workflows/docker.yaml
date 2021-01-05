@@ -19,4 +19,4 @@ jobs:
           password: ${{ secrets.CR_PAT }}
           registry: ghcr.io/jerhon/covid-19-stats-v3
           repository: jerhon/covid-19-stats-v3/hs-covid-19-stats
-          tag_with_ref: true
+          tags: ghcr.io/jerhon/covid-19-stats-v3:latest
