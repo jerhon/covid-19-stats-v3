@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import * as statementSlice from "../state.slice";
+import * as stateSlice from "../state.slice";
 import React from "react";
 import { AggregateDataPointsDto } from "../../api/hs-covid-19/api";
 import { CircularProgress } from "@material-ui/core";
-import { ResponsivePie } from "@nivo/pie";
+import { ResponsivePie} from "@nivo/pie";
 
 interface MyPieProperties
 {
@@ -37,9 +37,8 @@ function MyPie({ data }: MyPieProperties) {
         return (<CircularProgress /> );
     }
 
-    return (<ResponsivePie 
+    return (<ResponsivePie
         data={data}
-        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.25}
         padAngle={0.7}
         cornerRadius={0}
@@ -51,7 +50,8 @@ function MyPie({ data }: MyPieProperties) {
         radialLabelsLinkColor={{ from: 'color' }}
         sliceLabelsSkipAngle={0}
         sliceLabelsTextColor="#333333"
-        legends={legends} />)
+        legends={legends}
+    />)
 }
 
 export interface StatisticPieWidgetProps {
@@ -59,8 +59,7 @@ export interface StatisticPieWidgetProps {
 }
 
 export function StatisticPieWidget({ statistic }: StatisticPieWidgetProps) {
-    const state = useSelector(statementSlice.selector);
-
+    const state = useSelector(stateSlice.selector);
 
     if (!state?.data?.aggregate || !state?.data?.aggregate?.total || !state?.data?.aggregate?.state ) {
         return (<MyPie />);

@@ -12,6 +12,7 @@ import { BrowserRouter } from "react-router-dom";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles"
 import * as nationSlice from "./features/nation.slice";
+import {blue, red} from "@material-ui/core/colors";
 
 const reducer = combineReducers({
     ...statementSlice.reducer, 
@@ -26,17 +27,21 @@ const store = configureStore({
 const theme = createMuiTheme({
     palette: {
         primary: {
-            light: '#5472d3',
-            main: '#0d47a1',
-            dark: '#002171',
-            contrastText: '#fff',
+            main: blue[900]
         },
         secondary: {
-            light: '#ffffb0',
-            main: '#ffcc80',
-            dark: '#ca9b52',
-            contrastText: '#000',
-        },
+            main: red[800]
+        }
+    },
+    typography: {
+        fontSize: 16
+    },
+    overrides: {
+        MuiLink: {
+            root: {
+                color: red[900]
+            }
+        }
     }
 })
 

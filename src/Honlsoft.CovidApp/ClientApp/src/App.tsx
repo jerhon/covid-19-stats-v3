@@ -4,7 +4,6 @@ import {AppBar, Drawer, IconButton, Toolbar, Typography} from "@material-ui/core
 import MenuIcon from "@material-ui/icons/Menu";
 import {makeStyles} from "@material-ui/core/styles";
 import clsx from "clsx";
-import {StatePage} from "./features/state-page";
 import {Switch, Route, Redirect} from "react-router-dom"
 import {NationPage} from "./features/nation-page";
 
@@ -47,7 +46,6 @@ function App() {
             <div className={classes.page}>
                 <Switch>
                     <Route exact path="/" component={NationPage} />
-                    <Route exact path="/state/:id" component={StatePage} />
                     <Route>
                         <Redirect to="/" />
                     </Route>

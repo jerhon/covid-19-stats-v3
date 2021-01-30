@@ -33,7 +33,7 @@ namespace Honlsoft.CovidApp.Controllers
         {
             var state = await _dataContext.States.AsQueryable().FirstOrDefaultAsync((s) => s.Abbreviation == stateAbbreviation);
             var dataPoints = await _dataContext.StatesDailyStatistics.AsQueryable().Where((s) => s.State == stateAbbreviation).ToArrayAsync();
-            var dto = new GetStateDataDto(state?.Abbreviation, state?.Name, dataPoints);
+            var dto = new GetStateDataDto(state?.Abbreviation, state?.Name, dataPoints.OrderByDescending((dp) => dp.Date));
             return dto;
         }
 

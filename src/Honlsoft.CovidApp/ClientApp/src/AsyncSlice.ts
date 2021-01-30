@@ -1,15 +1,15 @@
 import {AsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-/** Represents the asunc state of the async thunk. */
+/** Represents the async state of the async thunk. */
 export interface AsyncSliceState<DataType> {
     notRequested: boolean,
     pending: boolean,
-    complete: boolean,
+    done: boolean,
     error: boolean,
     data?: DataType
 }
 
-/** Creates a slice for an async thunk that tracks the state of the thunk */
+/** Creates a slice for an async thunk that tracks the state of the thunk. */
 export function createAsyncSlice<Returned, ThunkArg = void, ThunkApiConfig = {}>(name: string, thunk: AsyncThunk<Returned, ThunkArg, ThunkApiConfig>) {
     return createSlice(
         {
@@ -17,7 +17,7 @@ export function createAsyncSlice<Returned, ThunkArg = void, ThunkApiConfig = {}>
             initialState: {
                 notRequested: true,
                 pending: false,
-                complete: false,
+                done: false,
                 error: false,
             } as AsyncSliceState<Returned>,
             reducers: {},
@@ -26,7 +26,7 @@ export function createAsyncSlice<Returned, ThunkArg = void, ThunkApiConfig = {}>
                     state.data = action.payload;
                     state.pending = false
                     state.notRequested = false
-                    state.complete = true;
+                    state.done = true;
                 },
                 [thunk.pending.toString()]: (state, action) => {
                     state.pending = true
